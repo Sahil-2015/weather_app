@@ -16,7 +16,12 @@ class WeatherInterface:
         self.today = data_today
         self.yesterday= old_data
         self.is_new_db = is_new_db
-        self.create_layout()
+
+        ## Variables for API Call
+        self.API_lat = 0
+        self.API_lon = 0
+        # self.create_layout()
+        self.user_input()
         window.config(padx=30,pady=30)
 
         window.mainloop()
@@ -49,8 +54,21 @@ class WeatherInterface:
             print("Only able to show the today's weather")
 
 
-
-            
-
-
+    def user_input(self):
+        input_lat_label = tk.Label(text="Lat:")
+        input_lat_label.grid(row=3, column=0)
+        self.text_lat = tk.Entry()
+        self.text_lat.grid(row=3,column=1)
+        input_lon_label = tk.Label(text="Lon:")
+        input_lon_label.grid(row=4, column=0)
+        self.text_lon = tk.Entry()
+        self.text_lon.grid(row=4,column=1)
+        button = tk.Button(text="Start",command=self.print_input  )
+        button.grid(row=3, column=2)
+        
+    def print_input(self):
+        # print(self.text_lat.get())
+        # print(self.text_lon.get())
+        self.API_lat = self.text_lat.get()
+        self.API_lon = self.text_lon.get()
 
